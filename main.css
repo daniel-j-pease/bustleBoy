@@ -5,9 +5,14 @@ html, body {
 }
 
 input[type=radio] {
-  /*-webkit-appearance: none;*/
+  /*display; none;*/
+  -webkit-appearance: none;
   /*-moz-appearance: none;*/
   /*appearance: none;*/
+}
+
+input[type=submit] {
+
 }
 
 #welcome {
