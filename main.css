@@ -4,6 +4,12 @@ html, body {
   font-family: 'Press Start 2P', cursive;
 }
 
+input[type=radio] {
+  /*-webkit-appearance: none;*/
+  /*-moz-appearance: none;*/
+  /*appearance: none;*/
+}
+
 #welcome {
   display: flex;
   flex-direction: column;

@@ -6,11 +6,12 @@ var timeElapsed = 0;
 var health = 3;
 var speed;
 var score = 0;
-var paused = false;
+var paused =  true;
 var currentPlayer = 'Player 1';
 
-function divMaker() {
-
+function playerNum() {
+  console.log('something')
+  paused = false;
 }
 
 // function onStart() {
@@ -192,10 +193,7 @@ function blinker() {
   $(this).fadeIn('slow', 'linear', blinker);
 }
 
-function playerNum() {
-  $(document).ready(onStart);
-  console.log('yo')
-}
+
 
 $(document).keyup(busControls);
 $(document).keydown(pauser);
