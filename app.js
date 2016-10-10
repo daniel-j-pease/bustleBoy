@@ -1,24 +1,26 @@
-//do you see
-
 console.log('app.js connected!');
 var sprite = $('#sprite');
 var timeElapsed = 0;
-var health = 3;
+var health = 5;
 var speed;
 var score = 0;
 var paused =  true;
-var currentPlayer = 'Player 1';
+var nickname = (window.location.search).slice(10).toUpperCase();
 
-function playerNum() {
-  console.log('something')
-  paused = false;
-}
+  if(nickname) {
+    $('#final').hide();
+    paused = false;
+    if(nickname.length > 0) {
+      $('#message').html(nickname + '! STOP LEANIN\' AND START CLEANIN\'!')
+    } else {
+      $('#message').html('HEY NEW GUY! GET TO WORK!')
+    }
+  }
 
-// function onStart() {
   var timer = setInterval(function() {
   if (!paused) {
     timeElapsed++;
-    if(timeElapsed < 10) {
+    if(timeElapsed < 30) {
       console.log('level1');
       speed = 100;
       if (timeElapsed % 5 === 0) {
@@ -26,7 +28,7 @@ function playerNum() {
       } else if (timeElapsed % 3 === 0 ) {
         chairMaker();
       }
-    } else if(timeElapsed < 15) {
+    } else if(timeElapsed < 50) {
       console.log('level2');
       speed = 75;
       if (timeElapsed % 5 === 0) {
@@ -34,7 +36,7 @@ function playerNum() {
       } else if (timeElapsed % 2 === 0 ) {
         chairMaker();
       }
-    } else if(timeElapsed < 20) {
+    } else if(timeElapsed < 70) {
       console.log('level3');
       speed = 50;
       if (timeElapsed % 3 === 0) {
@@ -42,7 +44,7 @@ function playerNum() {
       } else if (timeElapsed % 1 === 0 ) {
         chairMaker();
       }
-    } else if(timeElapsed < 35) {
+    } else if(timeElapsed < 90) {
       console.log('level4');
       speed = 25;
       if (timeElapsed % 2 === 0) {
@@ -67,16 +69,14 @@ function playerNum() {
   var mover = setInterval(function () {
     if(!paused) {
       $('.enemy').animate({left: '-=10'}, speed, 'linear', checker)
-      $('#score').html(Math.floor(score));
-      $('#health').html(Math.floor(health));
-      $('#currentPlayer').html(currentPlayer);
+      $('#score1').html('SCORE: ' + Math.floor(score));
+      $('#health1').html('HEALTH: ' + health);
+      $('#time1').html('TIME: ' + timeElapsed);
       score += .25;
     } else {
       clearInverval(mover);
     }
   }, 10)
-// }
-
 
 function checker() {
 
@@ -99,11 +99,21 @@ function checker() {
     score +=25;
     $(this).remove();
   }
+
+  if (health === 0 ) {
+    console.log('game over!');
+    $('#final').html('Game over! You scored ' + score + ' points and bussed for ' + timeElapsed +' seconds!')
+    $('#final').show();
+    paused = true;
+    clearInverval(timer);
+    clearInverval(mover);
+  }
+
 }
 
 function chairMaker() {
-  var foe = $('<div>').attr('class', 'enemy '+ timeElapsed);
-  foe.css({top: (Math.floor(Math.random()*630)), left:  $(window).innerWidth()-70})
+  var foe = $('<div>').attr('class', 'chair enemy '+ timeElapsed);
+  foe.css({top: (Math.floor(Math.random()*500) + 90), left:  $(window).innerWidth()-70})
   $('#container').append(foe);
   return foe;
 }
@@ -115,16 +125,14 @@ function allyMaker() {
 
 function tableMaker() {
 
-  var checker = Math.random();
+  var whichTable = Math.random();
 
-  if (checker < (1/3)) {
+  if (whichTable < (1/3)) {
+    makeTop(9);
+  } else if (whichTable <(2/3)) {
     makeBot(9);
-    // makeTop(4);
-  } else if (checker <(2/3)) {
-    makeBot(9);
-    // makeTop(4);
   } else {
-    // makeTop(4);
+    makeTop(4);
     makeBot(4);
   }
 
@@ -145,8 +153,8 @@ function tableMaker() {
     var botFlex = Math.floor(Math.random()*(($('#container').height()/proportion)));
     tableBot.css({
       left: $(window).innerWidth()-100,
-      height: 200,
-      bottom: -33,
+      bottom: 0,
+      height: ($('#container').height())/2 - (($('#container').height())/60  +  botFlex),
       })
     $('#container').append(tableBot);
     return tableBot;
@@ -193,12 +201,9 @@ function blinker() {
   $(this).fadeIn('slow', 'linear', blinker);
 }
 
-
-
 $(document).keyup(busControls);
 $(document).keydown(pauser);
 
-$('.option').click(playerNum);
 $('.option').mouseover(blinker);
 $('.option').mouseleave(function() {
   $(this).stop(true);
