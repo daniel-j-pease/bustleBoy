@@ -1,0 +1,95 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Press Start 2P', cursive;
+}
+
+#welcome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /*align-content: space-around;*/
+  background-color: #ADDFAD;
+  height: 600px;
+}
+
+#title {
+  font-size: 30px;
+  height: 50%;
+  text-align: center;
+}
+
+.text {
+  text-align: center;
+  display: block;
+  /*height: 100%*/
+}
+
+a {
+  text-decoration: none;
+}
+
+.option {
+  height: 10%;
+}
+
+.foot {
+  margin-top: 10%;
+  position: relative;
+}
+
+#scoreboard {
+  border: 1px dotted red;
+  height: 130px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+}
+
+#player1 {
+
+}
+
+#player2 {
+  align-self: flex-end;
+}
+
+#container {
+  background-color: #ADDFAD;
+  display: block;
+  height: 600px;
+  text-align: right;
+}
+
+.enemy {
+  background-color: #722F37;
+  display: inline;
+  height: 80px;
+  width: 75px;
+  position: absolute;
+}
+
+#field {
+  height: 600px;
+  width: 300px;
+  background-color: #e0d490;
+  text-align: center;
+  float: left;
+}
+
+#sprite {
+  background-color: #DFADCF;
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  bottom: 50%;
+}
+
+.table {
+  background-color: #FFA500;
+  width: 100px;
+  display: inline;
+  position: absolute;
+}
