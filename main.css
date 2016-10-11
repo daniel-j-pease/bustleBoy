@@ -138,3 +138,19 @@ input[type=submit] {
 p {
   font-size: 12px;
 }
+
+@media (max-height: 600px){
+  body {
+    font-size: 14px;
+    overflow: hidden;
+  }
+  #scoreboard {
+    height: 10px;
+  }
+  .info {
+    display: inline;
+  }
+  #field {
+    height: 10;
+  }
+}
