@@ -8,6 +8,7 @@ var paused =  true;
 var nickname = (window.location.search).slice(10).toUpperCase();
 
   if(nickname) {
+    $('#pauseScreen').hide();
     $('#final').hide();
     paused = false;
     if(nickname.length > 0) {
@@ -96,6 +97,7 @@ function checker() {
   var objLeft = $(this).position().left;
   var objTop = $(this).position().top;
 
+  // Thanks to MDN for the tip on collision detection!
   if (
     spriteLeft < objLeft + $(this).width() &&
     objLeft < spriteLeft + $('#sprite').width() &&
@@ -183,9 +185,12 @@ function tableMaker() {
 function pauser (e) {
   if (e.keyCode === 80) {
     paused = true;
+    $('#pauseScreen').show();
+    blinker($('#pauseScreen'));
     $('.enemy').clearQueue();
   } else if (e.keyCode === 32) {
-    paused = false
+    paused = false;
+    $('#pauseScreen').hide();
   }
 }
 
@@ -215,9 +220,9 @@ function busControls (e) {
   }
 }
 
-function blinker() {
-  $(this).fadeOut('slow', 'linear');
-  $(this).fadeIn('slow', 'linear', blinker);
+function blinker(div) {
+  $(div).fadeOut('slow', 'linear');
+  $(div).fadeIn('slow', 'linear', blinker);
 }
 
 $(document).keyup(busControls);
