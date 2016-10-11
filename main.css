@@ -105,7 +105,7 @@ input[type=submit] {
 }
 
 .friend {
-  background-color: grey;
+  background-image: url('./assets/plate-background.jpg');
   height: 50px;
   width: 50px;
   position: absolute;

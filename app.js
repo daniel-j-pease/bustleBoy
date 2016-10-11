@@ -27,7 +27,7 @@ var nickname = (window.location.search).slice(10).toUpperCase();
         tableMaker();
       } else if (timeElapsed % 3 === 0 ) {
         chairMaker();
-      } else if (timeElapsed % 11) {
+      } else if (timeElapsed % 11 === 0) {
         plateMaker()
       }
     } else if(timeElapsed < 50) {
@@ -37,7 +37,7 @@ var nickname = (window.location.search).slice(10).toUpperCase();
         tableMaker();
       } else if (timeElapsed % 2 === 0 ) {
         chairMaker();
-      } else if (timeElapsed % 10) {
+      } else if (timeElapsed % 10 === 0) {
         plateMaker()
       }
     } else if(timeElapsed < 70) {
@@ -47,7 +47,7 @@ var nickname = (window.location.search).slice(10).toUpperCase();
         tableMaker();
       } else if (timeElapsed % 1 === 0 ) {
         chairMaker();
-      } else if (timeElapsed % 9) {
+      } else if (timeElapsed % 9 === 0) {
         plateMaker()
       }
     } else if(timeElapsed < 90) {
@@ -58,7 +58,7 @@ var nickname = (window.location.search).slice(10).toUpperCase();
       } else if (timeElapsed % .5 === 0 ) {
        chairMaker();
        chairMaker();
-      } else if (timeElapsed % 8) {
+      } else if (timeElapsed % 8 === 0) {
         plateMaker()
       }
     } else {
@@ -69,6 +69,8 @@ var nickname = (window.location.search).slice(10).toUpperCase();
         chairMaker();
         chairMaker();
         chairMaker();
+      } else if (timeElapsed % 7 === 0) {
+        plateMaker();
       }
     }
   }
@@ -77,6 +79,7 @@ var nickname = (window.location.search).slice(10).toUpperCase();
   var mover = setInterval(function () {
     if(!paused) {
       $('.enemy').animate({left: '-=10'}, speed, 'linear', checker)
+      $('.friend').animate({left: '-=10'}, speed, 'linear', checker)
       $('#score1').html('SCORE: ' + Math.floor(score));
       $('#health1').html('HEALTH: ' + health);
       $('#time1').html('TIME: ' + timeElapsed);
@@ -90,25 +93,32 @@ function checker() {
 
   var spriteLeft = $('#sprite').position().left;
   var spriteTop = $('#sprite').position().top;
-  var enemyLeft = $(this).position().left;
-  var enemyTop = $(this).position().top;
+  var objLeft = $(this).position().left;
+  var objTop = $(this).position().top;
 
   if (
-    spriteLeft < enemyLeft + $(this).width() &&
-    enemyLeft < spriteLeft + $('#sprite').width() &&
-    spriteTop < enemyTop + $(this).height() &&
-    enemyTop < spriteTop + $('#sprite').height()
+    spriteLeft < objLeft + $(this).width() &&
+    objLeft < spriteLeft + $('#sprite').width() &&
+    spriteTop < objTop + $(this).height() &&
+    objTop < spriteTop + $('#sprite').height()
     ) {
-    health-=1;
     console.log('contact');
     $(this).remove();
+    if($(this).hasClass('friend')) {
+      health+=.5;
+      score+=200;
+      console.log('gotcha!')
+    } else {
+      health-=1;
+      console.log('ouch')
+    }
   }
   if($(this).position().left < -100) {
     score +=25;
     $(this).remove();
   }
 
-  if (health === 0 ) {
+  if (health <= 0 ) {
     console.log('game over!');
     $('#final').html('Game over! You scored ' + score + ' points and bussed for ' + timeElapsed +' seconds!')
     $('#final').show();
@@ -194,11 +204,11 @@ function busControls (e) {
 
     //left
     sprite.animate({left: '-=15px'}, 100);
-  } else if (busTop > 10 && e.keyCode === 38) {
+  } else if (busTop > 100 && e.keyCode === 38) {
 
     //up
     sprite.animate({top: '-=15px'}, 100);
-  } else if (busBottom < $('#field').height() && e.keyCode === 40) {
+  } else if (busBottom < ($('#field').height() + 90) && e.keyCode === 40) {
 
     //down
     sprite.animate({top: '+=15px'}, 100);
