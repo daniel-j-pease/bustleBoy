@@ -122,7 +122,7 @@ function checker() {
 
   if (health <= 0 ) {
     console.log('game over!');
-    $('#final').html('Game over! You scored ' + score + ' points and bussed for ' + timeElapsed +' seconds!')
+    $('#final').html('Game over! You scored ' + score + ' points and bustled for ' + timeElapsed +' seconds!')
     $('#final').show();
     paused = true;
     clearInverval(timer);
@@ -186,7 +186,6 @@ function pauser (e) {
   if (e.keyCode === 80) {
     paused = true;
     $('#pauseScreen').show();
-    blinker($('#pauseScreen'));
     $('.enemy').clearQueue();
   } else if (e.keyCode === 32) {
     paused = false;
@@ -220,15 +219,5 @@ function busControls (e) {
   }
 }
 
-function blinker(div) {
-  $(div).fadeOut('slow', 'linear');
-  $(div).fadeIn('slow', 'linear', blinker);
-}
-
 $(document).keyup(busControls);
 $(document).keydown(pauser);
-
-$('.option').mouseover(blinker);
-$('.option').mouseleave(function() {
-  $(this).stop(true);
-});

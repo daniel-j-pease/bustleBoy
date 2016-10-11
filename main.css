@@ -13,50 +13,44 @@ html, body {
 #welcome {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   height: 600px;
   background-color: #80A8D6;
   align-items: center;
 }
 
-input {
-  margin: 0;
-}
-
 input[type=text] {
-  border-radius: 5px;
+  border-radius: 35px;
+  font-size: 30px;
   display: block;
   text-align: center;
   align-content: center;
+  width: 200px;
+  opacity: .5;
 }
 
 input[type=submit] {
+  background-color: #ADDFAD;
   text-decoration: none;
   appearance: none;
+  font-size: 30px;
   padding: 0;
-  margin: 0;
+  margin-right: 0;
   display: block;
-  border-radius: 5px;
+  width: 210px;
+  border-radius: 30px;
+  align-items: center;
 }
 
 #title {
-  font-size: 30px;
-  height: 50%;
+  font-size: 60px;
   text-align: center;
+  margin-bottom: 40px;
 }
 
 .text {
   text-align: center;
   display: block;
-}
-
-.option {
-  height: 10%;
-}
-
-.foot {
-  margin-top: 10%;
-  position: relative;
 }
 
 #scoreboard {
@@ -81,6 +75,7 @@ input[type=submit] {
   position: absolute;
 }
 
+/*Thanks to Shi-Ju!*/
 .chair {
   background-image: url('./assets/pixel-chair.png');
   background-size: cover;
@@ -93,6 +88,7 @@ input[type=submit] {
   float: left;
 }
 
+/*Thanks to Nolan Manning!*/
 #sprite {
   background-image: url('./assets/tiny-sprite.gif');
   border: 1px dotted blue;
@@ -130,7 +126,6 @@ input[type=submit] {
 }
 
 #pauseScreen {
-  /*background-color: #ADDFAD;*/
   color: red;
   height: auto;
   width: auto;
