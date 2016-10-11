@@ -1,11 +1,12 @@
 console.log('app.js connected!');
 var sprite = $('#sprite');
 var timeElapsed = 0;
-var health = 5;
+var health = 1;
 var speed;
 var score = 0;
 var paused =  true;
 var nickname = (window.location.search).slice(10).toUpperCase();
+
 
   if(nickname) {
     $('#pauseScreen').hide();
@@ -121,9 +122,19 @@ function checker() {
   }
 
   if (health <= 0 ) {
+    $(document).off('keyup');
     console.log('game over!');
-    $('#final').html('Game over! You scored ' + score + ' points and bustled for ' + timeElapsed +' seconds!')
-    $('#final').show();
+    $('.final').html('Game over! You scored ' + score + ' points and bustled for ' + timeElapsed +' seconds!')
+
+    $('.final').css({
+      top: ($('#container').height()/3),
+      width: ($('#container').width()/2),
+      padding: 10,
+    });
+    $('.refresh').html('Refresh the page to try again!');
+    $('.refresh').css({
+      top: ($('#container').height()/3) + $('.final').height() + 10,
+    })
     paused = true;
     clearInverval(timer);
     clearInverval(mover);
@@ -135,7 +146,6 @@ function chairMaker() {
   var foe = $('<div>').attr('class', 'chair enemy '+ timeElapsed);
   foe.css({top: (Math.floor(Math.random()*500) + 90), left: $(window).innerWidth()-70})
   $('#container').append(foe);
-  return foe;
 }
 
 function plateMaker() {
@@ -188,9 +198,11 @@ function pauser (e) {
     $('#pauseScreen').show();
     $('.enemy').clearQueue();
     $('.friend').clearQueue();
+    $(document).off('keyup');
   } else if (e.keyCode === 32) {
     paused = false;
     $('#pauseScreen').hide();
+    $(document).keyup(busControls);
   }
 }
 
@@ -204,19 +216,19 @@ function busControls (e) {
   if (busRight < ($('#field').width()) && e.keyCode === 39) {
 
     //right
-    sprite.animate({left: '+=15px'}, 100);
+    sprite.animate({left: '+=25px'}, 100);
   } else if (busLeft > 8 && e.keyCode === 37) {
 
     //left
-    sprite.animate({left: '-=15px'}, 100);
+    sprite.animate({left: '-=25px'}, 100);
   } else if (busTop > 100 && e.keyCode === 38) {
 
     //up
-    sprite.animate({top: '-=15px'}, 100);
+    sprite.animate({top: '-=25px'}, 100);
   } else if (busBottom < ($('#field').height() + 90) && e.keyCode === 40) {
 
     //down
-    sprite.animate({top: '+=15px'}, 100);
+    sprite.animate({top: '+=25px'}, 100);
   }
 }
 
