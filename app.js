@@ -187,6 +187,7 @@ function pauser (e) {
     paused = true;
     $('#pauseScreen').show();
     $('.enemy').clearQueue();
+    $('.friend').clearQueue();
   } else if (e.keyCode === 32) {
     paused = false;
     $('#pauseScreen').hide();
