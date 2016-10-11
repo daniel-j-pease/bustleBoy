@@ -27,6 +27,8 @@ var nickname = (window.location.search).slice(10).toUpperCase();
         tableMaker();
       } else if (timeElapsed % 3 === 0 ) {
         chairMaker();
+      } else if (timeElapsed % 11) {
+        plateMaker()
       }
     } else if(timeElapsed < 50) {
       console.log('level2');
@@ -35,6 +37,8 @@ var nickname = (window.location.search).slice(10).toUpperCase();
         tableMaker();
       } else if (timeElapsed % 2 === 0 ) {
         chairMaker();
+      } else if (timeElapsed % 10) {
+        plateMaker()
       }
     } else if(timeElapsed < 70) {
       console.log('level3');
@@ -43,6 +47,8 @@ var nickname = (window.location.search).slice(10).toUpperCase();
         tableMaker();
       } else if (timeElapsed % 1 === 0 ) {
         chairMaker();
+      } else if (timeElapsed % 9) {
+        plateMaker()
       }
     } else if(timeElapsed < 90) {
       console.log('level4');
@@ -52,6 +58,8 @@ var nickname = (window.location.search).slice(10).toUpperCase();
       } else if (timeElapsed % .5 === 0 ) {
        chairMaker();
        chairMaker();
+      } else if (timeElapsed % 8) {
+        plateMaker()
       }
     } else {
       speed = 20;
@@ -113,14 +121,15 @@ function checker() {
 
 function chairMaker() {
   var foe = $('<div>').attr('class', 'chair enemy '+ timeElapsed);
-  foe.css({top: (Math.floor(Math.random()*500) + 90), left:  $(window).innerWidth()-70})
+  foe.css({top: (Math.floor(Math.random()*500) + 90), left: $(window).innerWidth()-70})
   $('#container').append(foe);
   return foe;
 }
 
-function allyMaker() {
-  var ally = $('<div>').attr('class', 'friend '+ timeElapsed);
-  // ally.css({top: (Math.floor(Math.random()*500))})
+function plateMaker() {
+  var plate = $('<div>').attr('class', 'friend '+ timeElapsed);
+  plate.css({top: (Math.floor(Math.random()*500) + 90), left: $(window).innerWidth()-70})
+  $('#container').append(plate);
 }
 
 function tableMaker() {
@@ -132,8 +141,8 @@ function tableMaker() {
   } else if (whichTable <(2/3)) {
     makeBot(9);
   } else {
-    makeTop(4);
-    makeBot(4);
+    makeTop(3);
+    makeBot(3);
   }
 
   function makeTop(proportion) {

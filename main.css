@@ -13,8 +13,30 @@ html, body {
 #welcome {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   height: 600px;
+  background-color: #80A8D6;
+  align-items: center;
+}
+
+input {
+  margin: 0;
+}
+
+input[type=text] {
+  border-radius: 5px;
+  display: block;
+  text-align: center;
+  align-content: center;
+}
+
+input[type=submit] {
+  text-decoration: none;
+  appearance: none;
+  padding: 0;
+  margin: 0;
+  display: block;
+  border-radius: 5px;
 }
 
 #title {
@@ -26,10 +48,6 @@ html, body {
 .text {
   text-align: center;
   display: block;
-}
-
-a {
-  text-decoration: none;
 }
 
 .option {
@@ -48,10 +66,6 @@ a {
   flex-direction: row;
   justify-content: space-around;
   align-content: center;
-}
-
-label {
-  text-align: center;
 }
 
 #container {
@@ -88,6 +102,14 @@ label {
   width: 75px;
   position: fixed;
   bottom: 50%;
+}
+
+.friend {
+  background-color: grey;
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  display: inline;
 }
 
 .table {
