@@ -1,7 +1,7 @@
 console.log('app.js connected!');
 var sprite = $('#sprite');
 var timeElapsed = 0;
-var health = 1;
+var health = 5;
 var speed;
 var score = 0;
 var paused =  true;
