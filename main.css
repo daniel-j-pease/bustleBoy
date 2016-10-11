@@ -91,7 +91,7 @@ input[type=submit] {
 /*Thanks to Nolan Manning!*/
 #sprite {
   background-image: url('./assets/tiny-sprite.gif');
-  border: 1px dotted blue;
+  /*border: 1px dotted blue;*/
   background-position: top-center;
   display: inline-block;
   height: 75px;
