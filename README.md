@@ -6,4 +6,6 @@ Arrow keys control the player. Press "p" to pause and "space" to unpause.
 
 Landing page inspired by slither.io:
 
-![alt tag](./filepath/image.png)
+![slither lander](./assets/lander-example.jpg)
+
+![my lander](./assets/my-lander.png)
