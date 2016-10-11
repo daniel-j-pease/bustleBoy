@@ -134,3 +134,7 @@ input[type=submit] {
   left: 30%;
   font-size: 75px;
 }
+
+p {
+  font-size: 12px;
+}
