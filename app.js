@@ -4,10 +4,12 @@ var timeElapsed = 0;
 var health = 5;
 var speed;
 var score = 0;
+//game starts at paused to prevent running during the landing page
 var paused =  true;
+//seizes everything after the '=' in the url
 var nickname = (window.location.search).slice(10).toUpperCase();
 
-
+  //prevent the lander from running the game
   if(nickname) {
     $('#pauseScreen').hide();
     $('#final').hide();
@@ -19,6 +21,7 @@ var nickname = (window.location.search).slice(10).toUpperCase();
     }
   }
 
+  //controls the spawn rate of enemies and plates
   var timer = setInterval(function() {
   if (!paused) {
     timeElapsed++;
@@ -78,6 +81,7 @@ var nickname = (window.location.search).slice(10).toUpperCase();
   }
 }, 1000);
 
+  //moves divs, updates score/health, and calls the checker (below)
   var mover = setInterval(function () {
     if(!paused) {
       $('.enemy').animate({left: '-=10'}, speed, 'linear', checker)
@@ -91,6 +95,7 @@ var nickname = (window.location.search).slice(10).toUpperCase();
     }
   }, 10)
 
+//checks for collision and collision type. updates score and health accordingly.
 function checker() {
 
   var spriteLeft = $('#sprite').position().left;
@@ -99,6 +104,7 @@ function checker() {
   var objTop = $(this).position().top;
 
   // Thanks to MDN for the tip on collision detection!
+  // My version of this algorithm only works if everything is the same size.
   if (
     spriteLeft < objLeft + $(this).width() &&
     objLeft < spriteLeft + $('#sprite').width() &&
@@ -116,11 +122,14 @@ function checker() {
       console.log('ouch')
     }
   }
+
+  //remove divs after they leave the screen
   if($(this).position().left < -100) {
     score +=25;
     $(this).remove();
   }
 
+  //check player health
   if (health <= 0 ) {
     $(document).off('keyup');
     console.log('game over!');
@@ -142,20 +151,24 @@ function checker() {
 
 }
 
+//makes chairs
 function chairMaker() {
   var foe = $('<div>').attr('class', 'chair enemy '+ timeElapsed);
   foe.css({top: (Math.floor(Math.random()*500) + 90), left: $(window).innerWidth()-70})
   $('#container').append(foe);
 }
 
+//makes plates
 function plateMaker() {
   var plate = $('<div>').attr('class', 'friend '+ timeElapsed);
   plate.css({top: (Math.floor(Math.random()*500) + 90), left: $(window).innerWidth()-70})
   $('#container').append(plate);
 }
 
+//makes tables
 function tableMaker() {
 
+  //evenly distrubtes instances table spawns at the top/bottom/both of the screen
   var whichTable = Math.random();
 
   if (whichTable < (1/3)) {
@@ -167,6 +180,7 @@ function tableMaker() {
     makeBot(3);
   }
 
+  //takes an argument which changes the height of the table
   function makeTop(proportion) {
     var tableTop = $('<div>').attr('class', 'enemy table ' + timeElapsed);
     var topFlex = Math.floor(Math.random()*(($('#container').height()/proportion)));
@@ -192,6 +206,7 @@ function tableMaker() {
   }
 }
 
+//pauses the game
 function pauser (e) {
   if (e.keyCode === 80) {
     paused = true;
@@ -206,6 +221,7 @@ function pauser (e) {
   }
 }
 
+//controls the sprite
 function busControls (e) {
 
   var busLeft = sprite.position().left;
@@ -232,5 +248,6 @@ function busControls (e) {
   }
 }
 
+//event listners for the sprite and pause/resume buttons
 $(document).keyup(busControls);
 $(document).keydown(pauser);
