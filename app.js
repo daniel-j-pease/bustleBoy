@@ -28,7 +28,7 @@ var nickname = (window.location.search).slice(10).toUpperCase();
         tableMaker();
       } else if (timeElapsed % 3 === 0 ) {
         chairMaker();
-      } else if (timeElapsed % 11 === 0) {
+      } else if (timeElapsed % 7 === 0) {
         plateMaker()
       }
     } else if(timeElapsed < 50) {
@@ -38,7 +38,7 @@ var nickname = (window.location.search).slice(10).toUpperCase();
         tableMaker();
       } else if (timeElapsed % 2 === 0 ) {
         chairMaker();
-      } else if (timeElapsed % 10 === 0) {
+      } else if (timeElapsed % 7 === 0) {
         plateMaker()
       }
     } else if(timeElapsed < 70) {
@@ -48,7 +48,7 @@ var nickname = (window.location.search).slice(10).toUpperCase();
         tableMaker();
       } else if (timeElapsed % 1 === 0 ) {
         chairMaker();
-      } else if (timeElapsed % 9 === 0) {
+      } else if (timeElapsed % 7 === 0) {
         plateMaker()
       }
     } else if(timeElapsed < 90) {
@@ -59,7 +59,7 @@ var nickname = (window.location.search).slice(10).toUpperCase();
       } else if (timeElapsed % .5 === 0 ) {
        chairMaker();
        chairMaker();
-      } else if (timeElapsed % 8 === 0) {
+      } else if (timeElapsed % 7 === 0) {
         plateMaker()
       }
     } else {
