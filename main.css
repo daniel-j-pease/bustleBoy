@@ -8,6 +8,11 @@ html, body {
 #message {
   font-size: 30;
   padding-top: 20px;
+  color: red;
+}
+
+#health1 {
+  color: red;
 }
 
 #welcome {
