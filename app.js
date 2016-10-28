@@ -15,9 +15,9 @@ var nickname = (window.location.search).slice(10).toUpperCase();
     $('#final').hide();
     paused = false;
     if(nickname.length > 0) {
-      $('#message').html(nickname + '! STOP LEANIN\' AND START CLEANIN\'!')
+      $('#nn').text(`${nickname}!`)
     } else {
-      $('#message').html('HEY NEW GUY! GET TO WORK!')
+      $('#message').html('YO NEW KID! GET TO WORK!')
     }
   }
 
@@ -86,9 +86,9 @@ var nickname = (window.location.search).slice(10).toUpperCase();
     if(!paused) {
       $('.enemy').animate({left: '-=10'}, speed, 'linear', checker)
       $('.friend').animate({left: '-=10'}, speed, 'linear', checker)
-      $('#score1').html('SCORE: ' + Math.floor(score));
-      $('#health1').html('HEALTH: ' + health);
-      $('#time1').html('TIME: ' + timeElapsed);
+      $('#score1').html('score: ' + Math.floor(score));
+      $('#lives').text(health);
+      $('#time1').html('time: ' + timeElapsed);
       score += .25;
     } else {
       clearInverval(mover);
